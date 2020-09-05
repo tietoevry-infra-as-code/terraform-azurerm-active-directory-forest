@@ -27,7 +27,7 @@ module "virtual-machine" {
   windows_distribution_name          = "windows2019dc"
   virtual_machine_size               = "Standard_A2_v2"
   admin_username                     = "tietoadmin"
-  admin_password                     = "complex_password"
+  admin_password                     = "P@$$w0rd1234!"
   private_ip_address_allocation_type = "Static"
   private_ip_address                 = ["10.1.2.4"]
 

@@ -1,4 +1,4 @@
-# Azure Virtual Machines with Active Directory Domain controller Terraform Module
+# Azure Virtual Machine with Active Directory forest Terraform Module
 
 This terraform module is designed to deploy azure Windows 2012R2/2016/2019 virtual machines with Public IP, Availability Set and Network Security Group support.
 

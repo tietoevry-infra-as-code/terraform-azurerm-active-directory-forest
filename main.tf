@@ -1,3 +1,6 @@
+#-------------------------------
+# Local Declarations
+#-------------------------------
 locals {
   nsg_inbound_rules = { for idx, security_rule in var.nsg_inbound_rules : security_rule.name => {
     idx : idx,

@@ -10,7 +10,6 @@ module "virtual-machine" {
   # This module support multiple Pre-Defined Linux and Windows Distributions.
   # Windows Images: windows2012r2dc, windows2016dc, windows2019dc
   virtual_machine_name               = "vm-testdc"
-  os_flavor                          = "windows"
   windows_distribution_name          = "windows2019dc"
   virtual_machine_size               = "Standard_A2_v2"
   admin_username                     = "azureadmin"

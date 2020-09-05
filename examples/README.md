@@ -1,6 +1,6 @@
-# Azure Virtual Machines Terraform Module
+# Azure Virtual Machines with Active Directory Domain controller Terraform Module
 
-This terraform module is designed to deploy azure Windows or Linux virtual machines with Public IP, Availability Set and Network Security Group support.
+This terraform module is designed to deploy azure Windows 2012R2/2016/2019 virtual machines with Public IP, Availability Set and Network Security Group support.
 
 ## Module Usage
 
@@ -17,7 +17,6 @@ module "virtual-machine" {
   # This module support multiple Pre-Defined Linux and Windows Distributions.
   # Windows Images: windows2012r2dc, windows2016dc, windows2019dc
   virtual_machine_name               = "vm-testdc"
-  os_flavor                          = "windows"
   windows_distribution_name          = "windows2019dc"
   virtual_machine_size               = "Standard_A2_v2"
   admin_username                     = "azureadmin"

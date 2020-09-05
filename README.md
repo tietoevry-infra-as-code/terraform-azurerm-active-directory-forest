@@ -4,6 +4,10 @@ This terraform module is designed to deploy azure Windows 2012R2/2016/2019 virtu
 
 This module also creates an Active Directory Forest using a virtual machine extension. However, this module only recommended for dev/test/demo environments. For production use of this module, fortify the security by adding correct NSG rules and security architecture.
 
+Active Directory must be supported by DNS to function properly, and Microsoft recommend that to install DNS when creates an Active Directory Domain. This modules also install DNS and integrate with active directory as there are some advantages of utilizing Active Directory integrated DNS as DNS zone. The primary benefits is AD replication will take care of DNS zone replication automatically and second one All DNS servers are writable. This reduces the necessity to configure and allot for separate DNS zone transfer traffic. Other benefits include secure updates and DHCP integration.
+
+> Active Directory must have DNS to function properly, but the implementation of Active Directory Services does not require the installation of Microsoft DNS. A BIND DNS or other third-party DNS will fully support a Windows domain. **However third party DNS server is not yet supported by this module.**
+
 ## Module Usage
 
 ```hcl
@@ -145,9 +149,9 @@ module "vnet-hub" {
 
   # .... omitted
   
-  virtual_machine_name               = "vm-testdc"
-  windows_distribution_name          = "windows2019dc"
-  virtual_machine_size               = "Standard_A2_v2"
+  virtual_machine_name       = "vm-testdc"
+  windows_distribution_name  = "windows2019dc"
+  virtual_machine_size       = "Standard_A2_v2"
   
   nsg_inbound_rules = [
     {

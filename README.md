@@ -2,7 +2,7 @@
 
 This terraform module is designed to deploy azure Windows 2012R2/2016/2019 virtual machines with Public IP, Availability Set and Network Security Group support.
 
-This module also creates an Active Directory Forest using a virtual machine extension. However, this module only recommended for dev environments. For production use of this module, fortify the security by adding correct NSG rules and security architecture.
+This module also creates an Active Directory Forest using a virtual machine extension. However, this module only recommended for dev/test/demo environments. For production use of this module, fortify the security by adding correct NSG rules and security architecture.
 
 ## Module Usage
 
@@ -28,7 +28,7 @@ module "virtual-machine" {
   private_ip_address                 = ["10.1.2.4"]
 
   # Active Directory domain and netbios details
-  # Intended for test/demo purposes
+  # Intended for dev/test/demo purposes
   # For production use of this module, fortify the security by adding correct nsg rules
   active_directory_domain       = "consoto.com"
   active_directory_netbios_name = "CONSOTO"
@@ -145,27 +145,25 @@ module "vnet-hub" {
 
   # .... omitted
   
-  os_flavor                  = "linux"
-  linux_distribution_name    = "ubuntu1804"
-  generate_admin_ssh_key     = false
-  admin_ssh_key_data         = "./id_rsa.pub"
-  instances_count            = 2
-  enable_vm_availability_set = true
-  enable_public_ip_address   = true
-
+  virtual_machine_name               = "vm-testdc"
+  windows_distribution_name          = "windows2019dc"
+  virtual_machine_size               = "Standard_A2_v2"
+  
   nsg_inbound_rules = [
     {
-      name                   = "ssh"
-      destination_port_range = "22"
+      name                   = "rdp"
+      destination_port_range = "3389"
       source_address_prefix  = "*"
     },
 
     {
-      name                   = "http"
-      destination_port_range = "80"
+      name                   = "dns"
+      destination_port_range = "53"
       source_address_prefix  = "*"
     },
   ]
+
+  # .... omitted
 }
 ```
 

@@ -19,7 +19,7 @@ module "virtual-machine" {
   virtual_machine_name               = "vm-testdc"
   windows_distribution_name          = "windows2019dc"
   virtual_machine_size               = "Standard_A2_v2"
-  admin_username                     = "azureadmin"
+  admin_username                     = "tietoadmin"
   admin_password                     = "complex_password"
   private_ip_address_allocation_type = "Static"
   private_ip_address                 = ["10.1.2.4"]

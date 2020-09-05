@@ -1,7 +1,7 @@
 output "windows_vm_password" {
   description = "Password for the windows VM"
   sensitive   = true
-  value       = var.os_flavor == "windows" ? element(concat(random_password.passwd.*.result, [""]), 0) : null
+  value       = var.os_flavor == "windows" && var.admin_password == null ? element(concat(random_password.passwd.*.result, [""]), 0) : null
 }
 
 output "windows_vm_public_ips" {

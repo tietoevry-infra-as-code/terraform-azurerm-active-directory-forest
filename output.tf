@@ -28,3 +28,13 @@ output "vm_availability_set_id" {
   description = "The resource ID of Virtual Machine availability set"
   value       = var.enable_vm_availability_set == true ? element(concat(azurerm_availability_set.aset.*.id, [""]), 0) : null
 }
+
+output "active_directory_domain" {
+  description = "The name of the active directory domain"
+  value       = var.active_directory_domain
+}
+
+output "active_directory_netbios_name" {
+  description = "The name of the active directory netbios name"
+  value       = var.active_directory_netbios_name
+}

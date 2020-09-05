@@ -146,6 +146,16 @@ variable "license_type" {
   default     = "None"
 }
 
+variable "active_directory_domain" {
+  description = "The name of the Active Directory domain, for example `consoto.com`"
+  default     = ""
+}
+
+variable "active_directory_netbios_name" {
+  description = "The netbios name of the Active Directory domain, for example `consoto`"
+  default     = ""
+}
+
 variable "tags" {
   description = "A map of tags to add to all resources"
   type        = map(string)

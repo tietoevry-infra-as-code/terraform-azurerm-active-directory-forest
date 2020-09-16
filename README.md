@@ -291,7 +291,7 @@ Name | Description | Type | Default
 
 ## Authors
 
-Module is maintained by [Kumaraswamy Vithanala](mailto:kumarvna@gmail.com) with the help from other awesome contributors.
+Originally created by [Kumaraswamy Vithanala (Kumar)](mailto:kumaraswamy.vithanala@tieto.com)
 
 ## Other resources
 

@@ -1,18 +1,18 @@
 module "virtual-machine" {
-  source = "github.com/tietoevry-infra-as-code/terraform-azurerm-active-directory-forest?ref=v1.0.0"
+  source = "github.com/tietoevry-infra-as-code/terraform-azurerm-active-directory-forest?ref=v2.0.0"
 
   # Resource Group, location, VNet and Subnet details
-  resource_group_name  = "rg-tieto-internal-shared-westeurope-001"
+  resource_group_name  = "rg-hub-demo-internal-shared-westeurope-001"
   location             = "westeurope"
-  virtual_network_name = "vnet-tieto-internal-shared-dev-westeurope-01"
-  subnet_name          = "snet-management-shared-westeurope"
+  virtual_network_name = "vnet-default-hub-westeurope"
+  subnet_name          = "snet-management-default-hub-westeurope"
 
   # This module support multiple Pre-Defined Linux and Windows Distributions.
   # Windows Images: windows2012r2dc, windows2016dc, windows2019dc
   virtual_machine_name               = "vm-testdc"
   windows_distribution_name          = "windows2019dc"
   virtual_machine_size               = "Standard_A2_v2"
-  admin_username                     = "tietoadmin"
+  admin_username                     = "batman"
   admin_password                     = "P@$$w0rd1234!"
   private_ip_address_allocation_type = "Static"
   private_ip_address                 = ["10.1.2.4"]
@@ -44,7 +44,7 @@ module "virtual-machine" {
   # Adding TAG's to your Azure resources (Required)
   # ProjectName and Env are already declared above, to use them here, create a varible.
   tags = {
-    ProjectName  = "tieto-internal"
+    ProjectName  = "demo-internal"
     Env          = "dev"
     Owner        = "user@example.com"
     BusinessUnit = "CORP"

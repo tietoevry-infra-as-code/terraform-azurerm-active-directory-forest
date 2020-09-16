@@ -12,27 +12,26 @@ Active Directory must be supported by DNS to function properly, and Microsoft re
 
 ```hcl
 module "virtual-machine" {
-  source = "github.com/tietoevry-infra-as-code/terraform-azurerm-active-directory-forest?ref=v1.0.0"
+  source = "github.com/tietoevry-infra-as-code/terraform-azurerm-active-directory-forest?ref=v2.0.0"
 
   # Resource Group, location, VNet and Subnet details
-  resource_group_name  = "rg-tieto-internal-shared-westeurope-001"
+  resource_group_name  = "rg-hub-demo-internal-shared-westeurope-001"
   location             = "westeurope"
-  virtual_network_name = "vnet-tieto-internal-shared-dev-westeurope-01"
-  subnet_name          = "snet-management-shared-westeurope"
+  virtual_network_name = "vnet-default-hub-westeurope"
+  subnet_name          = "snet-management-default-hub-westeurope"
 
   # This module support multiple Pre-Defined Linux and Windows Distributions.
   # Windows Images: windows2012r2dc, windows2016dc, windows2019dc
   virtual_machine_name               = "vm-testdc"
-  os_flavor                          = "windows"
   windows_distribution_name          = "windows2019dc"
   virtual_machine_size               = "Standard_A2_v2"
-  admin_username                     = "tietoadmin"
+  admin_username                     = "batman"
   admin_password                     = "P@$$w0rd1234!"
   private_ip_address_allocation_type = "Static"
   private_ip_address                 = ["10.1.2.4"]
 
   # Active Directory domain and netbios details
-  # Intended for dev/test/demo purposes
+  # Intended for test/demo purposes
   # For production use of this module, fortify the security by adding correct nsg rules
   active_directory_domain       = "consoto.com"
   active_directory_netbios_name = "CONSOTO"
@@ -58,7 +57,7 @@ module "virtual-machine" {
   # Adding TAG's to your Azure resources (Required)
   # ProjectName and Env are already declared above, to use them here, create a varible.
   tags = {
-    ProjectName  = "tieto-internal"
+    ProjectName  = "demo-internal"
     Env          = "dev"
     Owner        = "user@example.com"
     BusinessUnit = "CORP"
@@ -151,7 +150,7 @@ In the Source and Destination columns, `VirtualNetwork`, `AzureLoadBalancer`, an
 
 ```hcl
 module "vnet-hub" {
-  source = "github.com/tietoevry-infra-as-code/terraform-azurerm-virtual-machine?ref=v1.0.0"
+  source = "github.com/tietoevry-infra-as-code/terraform-azurerm-active-directory-forest?ref=v2.0.0"
 
   # .... omitted
   
@@ -210,15 +209,15 @@ End Date of the Project|Date when this application, workload, or service is plan
 
 ```hcl
 module "vnet-hub" {
-  source = "github.com/tietoevry-infra-as-code/terraform-azurerm-virtual-machine?ref=v1.0.0"
+  source = "github.com/tietoevry-infra-as-code/terraform-azurerm-active-directory-forest?ref=v2.0.0"
 
   # Resource Group, location, VNet and Subnet details
-  resource_group_name  = "rg-hub-tieto-internal-shared-westeurope-001"
+  resource_group_name  = "rg-hub-demo-internal-shared-westeurope-001"
 
   # ... omitted
 
   tags = {
-    ProjectName  = "tieto-internal"
+    ProjectName  = "demo-internal"
     Env          = "dev"
     Owner        = "user@example.com"
     BusinessUnit = "CORP"
@@ -226,6 +225,20 @@ module "vnet-hub" {
   }
 }
 ```
+
+## Requirements
+
+Name | Version
+-----|--------
+terraform | >= 0.13
+azurerm | ~> 2.27.0
+
+## Providers
+
+| Name | Version |
+|------|---------|
+azurerm | ~> 2.27.0
+random | n/a
 
 ## Inputs
 
@@ -278,7 +291,7 @@ Name | Description | Type | Default
 
 ## Authors
 
-Module is maintained by [Kumaraswamy Vithanala](mailto:kumaraswamy.vithanala@tieto.com) with the help from other awesome contributors.
+Module is maintained by [Kumaraswamy Vithanala](mailto:kumarvna@gmail.com) with the help from other awesome contributors.
 
 ## Other resources
 

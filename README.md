@@ -12,7 +12,8 @@ Active Directory must be supported by DNS to function properly, and Microsoft re
 
 ```hcl
 module "virtual-machine" {
-  source = "github.com/tietoevry-infra-as-code/terraform-azurerm-active-directory-forest?ref=v2.0.0"
+  source  = "kumarvna/active-directory-forest/azurerm"
+  version = "2.0.0"
 
   # Resource Group, location, VNet and Subnet details
   resource_group_name  = "rg-hub-demo-internal-shared-westeurope-001"
@@ -150,7 +151,8 @@ In the Source and Destination columns, `VirtualNetwork`, `AzureLoadBalancer`, an
 
 ```hcl
 module "vnet-hub" {
-  source = "github.com/tietoevry-infra-as-code/terraform-azurerm-active-directory-forest?ref=v2.0.0"
+  source  = "kumarvna/active-directory-forest/azurerm"
+  version = "2.0.0"
 
   # .... omitted
   
@@ -209,7 +211,8 @@ End Date of the Project|Date when this application, workload, or service is plan
 
 ```hcl
 module "vnet-hub" {
-  source = "github.com/tietoevry-infra-as-code/terraform-azurerm-active-directory-forest?ref=v2.0.0"
+  source  = "kumarvna/active-directory-forest/azurerm"
+  version = "2.0.0"
 
   # Resource Group, location, VNet and Subnet details
   resource_group_name  = "rg-hub-demo-internal-shared-westeurope-001"
@@ -291,7 +294,7 @@ Name | Description | Type | Default
 
 ## Authors
 
-Originally created by [Kumaraswamy Vithanala (Kumar)](mailto:kumaraswamy.vithanala@tieto.com)
+Originally created by [Kumaraswamy Vithanala](mailto:kumaraswamy.vithanala@tieto.com)
 
 ## Other resources
 
